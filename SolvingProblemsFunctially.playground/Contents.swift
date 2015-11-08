@@ -12,7 +12,7 @@ func getContents(text:String)-> String {
     }
     return tempValue
 }
-getContents("a.n.t.o")
+getContents("K.w.a.m.e")
 func lines(input:String) ->[String] {
     return input.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
 }
