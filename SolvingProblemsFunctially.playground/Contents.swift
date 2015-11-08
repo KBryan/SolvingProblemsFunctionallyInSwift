@@ -36,8 +36,25 @@ var functionalWay = {
 }
 
 functionalWay("B.R.Y.A.N")
+// f: X -> Y
+// g: Y -> Z
+// g(f(X)) => Z
+
+// mathematical functional composition
+// f: X -> g -> Z
+// f(f(X)) => Z
+// g(f(X)) : X => Z
+/// create custom operator and make values move to the left
+infix operator <<< { associativity left }
+///
+func <<< <A,B,C>(g: B -> C, f: A -> B) -> A -> C {
+    return {x in g(f(x)) }
+}
+var functionalWay2 = lines <<< getContents
+var some = functionalWay2("K.w.a.m.e")
 
 
+some[1]
 
 
 
