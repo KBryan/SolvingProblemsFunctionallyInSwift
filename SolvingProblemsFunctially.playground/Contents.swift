@@ -58,7 +58,7 @@ func <<< <A,B,C>(g: B -> C, f: A -> B) -> A -> C {
 }
 var functionalWay2 = lines <<< getContents
 var some = functionalWay2("K.w.a.m.e")
-
+some.count
 // take some function f:(X)->Y
 func someFunctionF(someValue1:String) -> String {
     return someValue1
@@ -67,21 +67,36 @@ func someFunctionF(someValue1:String) -> String {
 func someFunctionG(someValue2:String) ->String {
     return someValue2
 }
-some[1]
+// compose the two functions together
+
+
 // Generic Tables API
 protocol GenericTable {
     func genericTables(x:Int) -> (Int) -> Int
+    // currying example in swift
+    func genericTablesCurrying(x x:Int)(y:Int) -> Int
+}
+protocol Addable {
+    func +(lhs: Self,rhs: Self) -> Self
 }
 struct Tables : GenericTable {
+    
+    func add<T:Addable>(a:T,b:T) ->T {
+        return a+b
+    }
     func genericTables(x:Int) -> (Int) -> Int {
         return { y in x * y }
+    }
+    func genericTablesCurrying(x x:Int)(y:Int) -> Int {
+        return x * y
     }
 }
 var tablesOfTwo = Tables()
 var t2 = tablesOfTwo.genericTables(2)
 print ("\(t2(16))")
-
-
+/// Currying
+var tablesCurrying = tablesOfTwo.genericTablesCurrying(x: 4)
+tablesCurrying(y: 3)
 
 
 
