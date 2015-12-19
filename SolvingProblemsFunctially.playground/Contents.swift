@@ -97,7 +97,56 @@ print ("\(t2(16))")
 /// Currying
 var tablesCurrying = tablesOfTwo.genericTablesCurrying(x: 4)
 tablesCurrying(y: 3)
+/// Fun with closures
+func operate(a:Int,b:Int, fn:(Int,Int) ->()) {
+    fn(a,b)
+}
+func add(x:Int,y:Int) {
+    print(x+y)
+}
+operate(4, b: 4, fn: add)
 
+operate(3, b: 3, fn: { (a, b)  in print(a + b) })
+
+
+//
+struct ObjectA  {
+    
+    private var name:String!
+    private var emailAddress:String!
+    
+    
+    func testFunction(x:Int,y:Int, completionHandler:(Int,Int) -> (Int)) {
+        completionHandler(x,y)
+    }
+}
+
+
+extension ObjectA : Equatable {}
+
+func ==(lhs:ObjectA, rhs:ObjectA) -> Bool {
+    return lhs.name == rhs.name
+}
+
+let someObjectA = ObjectA(name: "John", emailAddress: "Kwame@3einteractive.com")
+let someObjectB = ObjectA(name: "Kwame", emailAddress: "Kwame@3einteractive.com")
+
+someObjectB.testFunction(20, y: 20) { (x:Int, y:Int) -> (Int) in
+    return x * y;
+}
+
+someObjectA == someObjectB
+
+let addedSum = someObjectA.testFunction(4, y: 5) { (x:Int, y:Int) -> Int in
+    return x * y
+}
+print(addedSum)
+func curriedFunction(a:Int)(b:Int)(c:Int) -> (Int)  {
+    return a + b + b
+}
+
+
+curriedFunction(4)(b:5)(c:10)
 
 
 
