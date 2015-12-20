@@ -141,12 +141,36 @@ let addedSum = someObjectA.testFunction(4, y: 5) { (x:Int, y:Int) -> Int in
     return x * y
 }
 print(addedSum)
-func curriedFunction(a:Int)(b:Int)(c:Int) -> (Int)  {
-    return a + b + b
+func curriedFunction(a:Int)(b:Int)(c:Int...) -> (Int,Int,[Int])  {
+    return (a,b,c)
 }
+let r = curriedFunction(5)(b:30)(c:45,34,3,4,5,3,34,678)
 
 
 curriedFunction(4)(b:5)(c:10)
+final class Box<T> {
+    var unbox:T
+    init(_ value:T) {
+        unbox = value
+    }
+}
+/// Curried function simplifies inner function syntax
+/// An example of a curried function
+func aSimplifiedCurriedFunction(a:Int)(b:Int)(c:Int) -> Int {
+    return a + b + c
+}
+
+func incFn()-> (Int)->(Int) {
+    return {
+        var a = $0
+        a+=1
+        return a
+    }
+}
+
+
+var myFunction = incFn()
+myFunction(4)
 
 
 
