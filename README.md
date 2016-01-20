@@ -1,6 +1,6 @@
 # SolvingProblemsFunctionallyInSwift
 An example of solving problems in a functional style
-
+```
 import UIKit
 import Foundation
 
@@ -13,11 +13,15 @@ func getContents(text:String)-> String {
     }
     return tempValue
 }
-// creating a tuple /// returning multiple values from a function
-//func returnMultipleValue(value1:String, value2:String) -> (Int,Int) {
-//  //  return value1 + value2
-//}
+```
+ creating a tuple allows you to return multiple values from a function
+ ```
+ func returnMultipleValue(value1:String, value2:String) -> (Int,Int) {
+      return value1 + value2
+}
 getContents("K.w.a.m.e")
+
+
 func lines(input:String) ->[String] {
     return input.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
 }
@@ -172,3 +176,4 @@ func incFn()-> (Int)->(Int) {
 
 var myFunction = incFn()
 myFunction(4)
+```
